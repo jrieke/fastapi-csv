@@ -144,7 +144,7 @@ class FastAPI_CSV(FastAPI):
         # print("After:", route.dependant.query_params)
 
 
-def main(csv_path: str, host: str = "127.0.0.1", port: int = 8000):
+def cli(csv_path: str, host: str = "127.0.0.1", port: int = 8000):
     typer.echo(f"🚧 Creating API from CSV file: {csv_path}")
     app = FastAPI_CSV(csv_path)
     typer.echo("🦄 Starting with uvicorn...")
@@ -157,4 +157,4 @@ def main(csv_path: str, host: str = "127.0.0.1", port: int = 8000):
 
 
 if __name__ == "__main__":
-    typer.run(main)
+    typer.run(cli)
