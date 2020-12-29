@@ -42,12 +42,11 @@ https://127.0.0.1:8000/docs
 ```python
 from fastapi_csv import FastAPI_CSV
 
-app = FastAPI_CSV("path/to/data.csv")
+app = FastAPI_CSV("people.csv")
 ```
 
 The cool thing: `FastAPI_CSV` is just a wrapper around `FastAPI`. Therefore, you can do 
-all the stuff you can do with a normal fastapi instance. E.g. to add a new endpoint, 
-just do:
+all the stuff you can do with a normal fastapi instance, e.g. add a new endpoint:
 
 ```python
 # Add a new endpoint, just like in normal fastapi
