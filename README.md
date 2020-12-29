@@ -3,7 +3,8 @@
 ## What is this?
 
 Create APIs from CSV files within seconds, using a lightweight & fully customizable 
-wrapper around [fastapi](https://fastapi.tiangolo.com/). 
+wrapper around [fastapi](https://fastapi.tiangolo.com/). The CSV data is internally 
+stored in a temporary sqlite database, so it's blazing fast even for huge files. 
 
 
 ## Installation
