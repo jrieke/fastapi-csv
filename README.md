@@ -17,8 +17,8 @@ an API for it:
 python fastapi_csv.py people.csv
 ```
 
-This will automatically create an endpoint `/people` (same name as the CSV file), 
-which can be queried with all column names in the CSV (e.g. you can do 
+This will start a fastapi instance with an endpoint `/people` (same name as the CSV 
+file), which can be queried with all column names in the CSV (e.g. you can do 
 `/data?first_name=Rachel` or `/data?last_name=Johnson&age=48`). All returned values are 
 automatically cast to the correct types. 
 
