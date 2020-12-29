@@ -45,6 +45,8 @@ from fastapi_csv import FastAPI_CSV
 app = FastAPI_CSV("people.csv")
 ```
 
+### Extending it
+
 The cool thing: `FastAPI_CSV` is just a wrapper around `FastAPI`. Therefore, you can do 
 all the stuff you can do with a normal fastapi instance, e.g. add a new endpoint:
 
@@ -58,7 +60,18 @@ def hello(self):
 In the future, you will also be able to easily modify existing endpoints that were generated
 based on the CSV file.
 
-Starting the API also works like with normal fastapi:
+
+### Updating
+
+If your CSV file changes, you can update the API data with:
+
+```python
+app.update_data()
+```
+
+### Running
+
+Starting the API works like with normal fastapi:
 
 ```bash
 uvicorn my_file:app
