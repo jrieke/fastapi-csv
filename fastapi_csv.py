@@ -54,9 +54,20 @@ class FastAPI_CSV(FastAPI):
             where_clauses = []
             for name, val in kwargs.items():
                 if val is not None:
-                    if isinstance(val, str):
-                        val = f"'{val}'"
-                    where_clauses.append(f"{name}={val}")
+                    if name.endswith("_greaterThan"):
+                        where_clauses.append(f"{name[:-12]}>{val}")
+                    elif name.endswith("_greaterThanEqual"):
+                        where_clauses.append(f"{name[:-17]}>={val}")
+                    elif name.endswith("_lessThan"):
+                        where_clauses.append(f"{name[:-9]}<{val}")
+                    elif name.endswith("_lessThanEqual"):
+                        where_clauses.append(f"{name[:-14]}<={val}")
+                    elif name.endswith("_contains"):
+                        where_clauses.append(f"instr({name[:-9]}, '{val}') > 0")
+                    else:
+                        if isinstance(val, str):
+                            val = f"'{val}'"
+                        where_clauses.append(f"{name}={val}")
             if where_clauses:
                 where = "WHERE " + " AND ".join(where_clauses)
             else:
@@ -68,11 +79,19 @@ class FastAPI_CSV(FastAPI):
             dicts = cur.fetchall()
             return dicts
 
-        self.get(f"/{self.table_name}", name=self.table_name)(generic_get)
-        self._clear_query_params(f"/{self.table_name}")
+        route_path = f"/{self.table_name}"
+        self.get(route_path, name=self.table_name)(generic_get)
+        self._clear_query_params(route_path)
         for col, dtype in zip(df.columns, df.dtypes):
             type_ = dtype_to_type(dtype)
-            self._add_query_param(f"/{self.table_name}", col, type_)
+            self._add_query_param(route_path, col, type_)
+            if type_ in (int, float):
+                self._add_query_param(route_path, col + "_greaterThan", type_)
+                self._add_query_param(route_path, col + "_greaterThanEqual", type_)
+                self._add_query_param(route_path, col + "_lessThan", type_)
+                self._add_query_param(route_path, col + "_lessThanEqual", type_)
+            elif type_ == str:
+                self._add_query_param(route_path, col + "_contains", type_)
 
     def delete_data(self):
         """
@@ -150,7 +169,7 @@ def cli(csv_path: str, host: str = "127.0.0.1", port: int = 8000):
     typer.echo("🦄 Starting with uvicorn...")
     typer.echo(
         "💡 Check out the API docs at "
-        + typer.style(f"https://{host}:{port}/docs", bold=True)
+        + typer.style(f"http://{host}:{port}/docs", bold=True)
     )
     typer.echo("-" * 80)
     uvicorn.run(app, host=host, port=port)
