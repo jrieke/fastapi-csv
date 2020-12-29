@@ -19,7 +19,7 @@ pip install -r requirements.txt
 
 ## How to use it
 
-## 1. From the command line
+### 1. From the command line
 
 There's a simple CSV file in this repo for testing ([people.csv](people.csv)). To start 
 an API for it:
@@ -37,7 +37,9 @@ Check out the API docs for more information and an interactive demo, they should
 https://127.0.0.1:8000/docs
 
 
-## 2. From Python
+### 2. From Python
+
+Write to a file `my_file.py`:
 
 ```python
 from fastapi_csv import FastAPI_CSV
@@ -45,7 +47,13 @@ from fastapi_csv import FastAPI_CSV
 app = FastAPI_CSV("people.csv")
 ```
 
-### Extending it
+Start from terminal just like in normal fastapi:
+
+```bash
+uvicorn my_file:app
+```
+
+**Extending the API**
 
 The cool thing: `FastAPI_CSV` is just a wrapper around `FastAPI`. Therefore, you can do 
 all the stuff you can do with a normal fastapi instance, e.g. add a new endpoint:
@@ -61,18 +69,10 @@ In the future, you will also be able to easily modify existing endpoints that we
 based on the CSV file.
 
 
-### Updating
+**Updating the data**
 
 If your CSV file changes, you can update the API data with:
 
 ```python
 app.update_data()
-```
-
-### Running
-
-Starting the API works like with normal fastapi:
-
-```bash
-uvicorn my_file:app
 ```
