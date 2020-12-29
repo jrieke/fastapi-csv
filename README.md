@@ -34,7 +34,7 @@ do:
 - `/people?first_name=Rachel`
 - `/people?last_name=Johnson&age=48`
    
-Additionally, there are some convenience query parameter, e.g. 
+Additionally, there are some convenience query parameters, e.g. 
 
 - `/people&age_greaterThan=18` (for int/float)
 - `/people&age_lessThanEqual=18` (for int/float)
