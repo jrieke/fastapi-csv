@@ -1,12 +1,12 @@
 # fastapi-csv
 
-## What it is
+## What is this?
 
 Create APIs from CSV files within seconds, using a lightweight & fully customizable 
 wrapper around [fastapi](https://fastapi.tiangolo.com/). 
 
 
-# How to use it
+## How to use it
 
 ### 1. From the command line
 
