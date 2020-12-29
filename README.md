@@ -46,7 +46,7 @@ http://127.0.0.1:8000/docs
 
 ### 2. From Python
 
-Write to a file `my_file.py`:
+Create a file `my_file.py`:
 
 ```python
 from fastapi_csv import FastAPI_CSV
@@ -54,7 +54,7 @@ from fastapi_csv import FastAPI_CSV
 app = FastAPI_CSV("people.csv")
 ```
 
-Start from terminal just like in normal fastapi:
+Start from terminal just like a normal fastapi app:
 
 ```bash
 uvicorn my_file:app
@@ -72,8 +72,8 @@ def hello(self):
     return {"Hello:", "World"}
 ```
 
-In the future, you will also be able to easily modify existing endpoints that were generated
-based on the CSV file.
+In the future, you will also be able to easily modify existing endpoints that were 
+generated from the CSV file.
 
 
 **Updating the data**
