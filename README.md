@@ -38,7 +38,7 @@ just do:
 ```python
 # Add a new endpoint, just like in normal fastapi
 @app.get("/hello")
-def info(self):
+def hello(self):
     return {"Hello:", "World"}
 ```
 
