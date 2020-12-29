@@ -77,5 +77,5 @@ If your CSV file changes, you can update the API data with:
 app.update_data()
 ```
 
-Note that this will only update the data, not the endpoint or query parameters. To do 
-that, you need to create a new `FastAPI_CSV` instance or re-start uvicorn.
+Note that this will only update the data, not the API endpoints or query parameters. 
+To do that, you need to create a new `FastAPI_CSV` instance or re-start uvicorn.
