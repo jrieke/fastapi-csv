@@ -6,6 +6,17 @@ Create APIs from CSV files within seconds, using a lightweight & fully customiza
 wrapper around [fastapi](https://fastapi.tiangolo.com/). 
 
 
+## Installation
+
+Real installer coming soon, for now just clone:
+
+```bash
+git clone https://github.com/jrieke/fastapi-csv.git
+cd fastapi-csv
+pip install -r requirements.txt
+```
+
+
 ## How to use it
 
 ### 1. From the command line
