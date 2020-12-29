@@ -10,8 +10,6 @@ import pandas as pd
 import sqlite3
 import numpy as np
 import pydantic
-import typer
-import uvicorn
 
 
 def create_query_param(name: str, type_: Type, default) -> pydantic.fields.ModelField:
@@ -161,19 +159,3 @@ class FastAPI_CSV(FastAPI):
         query_param = create_query_param(name, type_, default)
         route.dependant.query_params.append(query_param)
         # print("After:", route.dependant.query_params)
-
-
-def cli(csv_path: str, host: str = "127.0.0.1", port: int = 8000):
-    typer.echo(f"🚧 Creating API from CSV file: {csv_path}")
-    app = FastAPI_CSV(csv_path)
-    typer.echo("🦄 Starting with uvicorn...")
-    typer.echo(
-        "💡 Check out the API docs at "
-        + typer.style(f"http://{host}:{port}/docs", bold=True)
-    )
-    typer.echo("-" * 80)
-    uvicorn.run(app, host=host, port=port)
-
-
-if __name__ == "__main__":
-    typer.run(cli)
