@@ -29,11 +29,17 @@ python fastapi_csv.py people.csv
 ```
 
 This will start a fastapi instance based on the CSV file. It has an endpoint `/people` 
-(same name as the file), which can be queried using the CSV's column names
-(e.g. you can do `/people?first_name=Rachel` or `/people?last_name=Johnson&age=48`). 
-Additionally, there are some convenience query parameters, e.g. for numbers you can do 
-`/people&age_greaterThan=18` or for strings you can do 
-`/people&first_name_contains=ach` (watch out: this one is case sensitive!). 
+(same name as the file), which can be queried using the CSV's column names, e.g. you can 
+do:
+
+- `/people?first_name=Rachel`
+- `/people?last_name=Johnson&age=48`
+   
+Additionally, there are some convenience query parameters, e.g. 
+
+- `/people&age_greaterThan=18` (for int/float)
+- - `/people&age_lessThanEqual=18` (for int/float)
+- `/people&first_name_contains=ach` (for string, watch out: this one is case sensitive!)
 
 Check out the API docs for more information and an interactive demo, they should be at
 http://127.0.0.1:8000/docs
