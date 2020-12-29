@@ -9,12 +9,8 @@ stored in a temporary sqlite database, so it's blazing fast even for huge files.
 
 ## Installation
 
-Real installer coming soon, for now just clone:
-
 ```bash
-git clone https://github.com/jrieke/fastapi-csv.git
-cd fastapi-csv
-pip install -r requirements.txt
+pip install git+https://github.com/jrieke/fastapi-csv.git
 ```
 
 
@@ -26,7 +22,7 @@ There's a simple CSV file in this repo for testing ([people.csv](people.csv)). T
 an API for it:
 
 ```bash
-python fastapi_csv.py people.csv
+fastapi-csv people.csv
 ```
 
 This will start a fastapi instance based on the CSV file. It has an endpoint `/people` 
