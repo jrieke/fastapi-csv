@@ -35,10 +35,10 @@ do:
 - `/people?first_name=Rachel`
 - `/people?last_name=Johnson&age=48`
    
-Additionally, there are some convenience query parameters, e.g. 
+Additionally, there are some convenience query parameters for numbers and strings, e.g. 
 
 - `/people&age_greaterThan=18` (for int/float)
-- - `/people&age_lessThanEqual=18` (for int/float)
+- `/people&age_lessThanEqual=18` (for int/float)
 - `/people&first_name_contains=ach` (for string, watch out: this one is case sensitive!)
 
 Check out the API docs for more information and an interactive demo, they should be at
