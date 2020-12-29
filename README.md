@@ -33,6 +33,9 @@ file), which can be queried with all column names in the CSV (e.g. you can do
 `/data?first_name=Rachel` or `/data?last_name=Johnson&age=48`). All returned values are 
 automatically cast to the correct types. 
 
+Check out the API docs for more information and an interactive demo, they should be at
+https://127.0.0.1:8000/docs
+
 
 ### 2. From Python
 
@@ -55,3 +58,9 @@ def hello(self):
 
 In the future, you will also be able to easily modify existing endpoints that were generated
 based on the CSV file.
+
+Starting the API also works like with normal fastapi:
+
+```bash
+uvicorn my_file:app
+```
