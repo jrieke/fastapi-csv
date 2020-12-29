@@ -19,7 +19,7 @@ pip install -r requirements.txt
 
 ## How to use it
 
-### 1. From the command line
+## 1. From the command line
 
 There's a simple CSV file in this repo for testing ([people.csv](people.csv)). To start 
 an API for it:
@@ -37,7 +37,7 @@ Check out the API docs for more information and an interactive demo, they should
 https://127.0.0.1:8000/docs
 
 
-### 2. From Python
+## 2. From Python
 
 ```python
 from fastapi_csv import FastAPI_CSV
