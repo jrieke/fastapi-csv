@@ -1,3 +1,7 @@
+"""
+Contains the main `FastAPI_CSV` class, which wraps `FastAPI`.
+"""
+
 import os
 from typing import Union, Type
 from pathlib import Path

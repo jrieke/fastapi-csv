@@ -1,3 +1,7 @@
+"""
+Simple command line interface that starts an API by calling `fastapi-csv`.
+"""
+
 import typer
 import uvicorn
 
