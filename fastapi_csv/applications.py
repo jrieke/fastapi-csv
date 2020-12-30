@@ -63,7 +63,7 @@ class FastAPI_CSV(FastAPI):
         """Initializes a FastAPI instance that serves data from a CSV file."""
         super().__init__()
 
-        # Read CSV file and create sqlite3 database from it.
+        # Read CSV file to pandas dataframe and create sqlite3 database from it.
         self.csv_path = Path(csv_path)
         self.table_name = self.csv_path.stem
         self.con = None
@@ -99,9 +99,14 @@ class FastAPI_CSV(FastAPI):
             dicts = self.query_database(sql_query)
             return dicts
 
+        # Add GET endpoint.
         route_path = f"/{self.table_name}"
         self.get(route_path, name=self.table_name)(generic_get)
+        
+        # Remove all auto-generated query parameters (=one for `kwargs`).
         self._clear_query_params(route_path)
+        
+        # Add new query parameters based on column names and data types.
         for col, dtype in zip(df.columns, df.dtypes):
             type_ = dtype_to_type(dtype)
             self._add_query_param(route_path, col, type_)
@@ -170,7 +175,7 @@ class FastAPI_CSV(FastAPI):
         return df
 
     def _find_route(self, route_path):
-        """Find a route (stored in the FastAPI instace) by its path (e.g. '/index')."""
+        """Find a route (stored in the FastAPI instance) by its path (e.g. '/index')."""
         for route in self.router.routes:
             if route.path == route_path:
                 return route
