@@ -72,6 +72,8 @@ class FastAPI_CSV(FastAPI):
         # Add an endpoint for the CSV file with one query parameter for each column.
         # We hack into fastapi a bit here to inject the query parameters at runtime
         # based on the column names/types.
+        
+        # First, define a generic endpoint method, which queries the database.
         def generic_get(**kwargs):
             where_clauses = []
             for name, val in kwargs.items():
@@ -99,7 +101,7 @@ class FastAPI_CSV(FastAPI):
             dicts = self.query_database(sql_query)
             return dicts
 
-        # Add GET endpoint.
+        # Add the method as GET endpoint to fastapi.
         route_path = f"/{self.table_name}"
         self.get(route_path, name=self.table_name)(generic_get)
         
