@@ -39,6 +39,26 @@ def dtype_to_type(dtype) -> Type:
 
 
 class FastAPI_CSV(FastAPI):
+    # TODO: Implement a way to modify auto-generated endpoints, e.g. by
+    #
+    # @app.modify("/people")
+    # def modify_people(results: List, new_query_param: str = "foo"):
+    #
+    #     # `results` are the dicts/json that are normally returned by the endpoint.
+    #     # Modify them as you like.
+    #     results.append({"Hello": "World"})
+    #
+    #     # Any additional function args (like `new_query_param`) are added as p
+    #     # arameters to the endpoint, just like in normal fastapi.
+    #     results.append({"Hello": new_query_param})
+    #
+    #     # You can also do a manual query on the database that's created from the CSV.
+    #     rows = app.query_database(f"SELECT * FROM people WHERE first_name={new_query_param}")
+    #     results.append(rows)
+    #
+    #     # Return modified results so they get passed to the user.
+    #     return results
+
     def __init__(self, csv_path: Union[str, Path]) -> None:
         """Initializes a FastAPI instance that serves data from a CSV file."""
         super().__init__()
@@ -47,7 +67,7 @@ class FastAPI_CSV(FastAPI):
         self.csv_path = Path(csv_path)
         self.table_name = self.csv_path.stem
         self.con = None
-        df = self.update_data()
+        df = self.update_database()
 
         # Add an endpoint for the CSV file with one query parameter for each column.
         # We hack into fastapi a bit here to inject the query parameters at runtime
@@ -76,9 +96,7 @@ class FastAPI_CSV(FastAPI):
                 where = ""
 
             sql_query = f"SELECT * FROM {self.table_name} {where}"
-            print(sql_query)
-            cur = self.con.execute(sql_query)
-            dicts = cur.fetchall()
+            dicts = self.query_database(sql_query)
             return dicts
 
         route_path = f"/{self.table_name}"
@@ -95,20 +113,28 @@ class FastAPI_CSV(FastAPI):
             elif type_ == str:
                 self._add_query_param(route_path, col + "_contains", type_)
 
-    def delete_data(self):
+    def query_database(self, sql_query):
+        """Executes a SQL query on the database and returns rows as list of dicts."""
+        logging.info(f"Querying database: {sql_query}")
+        cur = self.con.execute(sql_query)
+        dicts = cur.fetchall()
+        return dicts
+
+    def delete_database(self):
         """
         Deletes the database with all data read from the CSV. 
             
         The CSV file is not deleted of course. The API endpoints are also not affected,
         so you can use `update_data` to read in new data.
         """
-        # See https://stackoverflow.com/questions/48732439/deleting-a-database-file-in-memory
         if self.con is not None:
             logging.info("Deleting old database...")
             # Closing will delete the database, as it's only stored in memory.
+            # See https://stackoverflow.com/questions/48732439/deleting-a-database-file-in-memory
             self.con.close()
+            self.con = None
 
-    def update_data(self):
+    def update_database(self):
         """
         Updates the database with the current data from the CSV file.
         
@@ -116,7 +142,7 @@ class FastAPI_CSV(FastAPI):
         and/or data types in the CSV change (and you want that to update in the 
         endpoints as well), you need to create a new FastAPI_CSV object.
         """
-        self.delete_data()
+        self.delete_database()
 
         # Create in-memory sqlite3 database.
         # We can use check_same_thread because we only read from the database, so

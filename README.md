@@ -85,7 +85,7 @@ generated from the CSV file.
 If your CSV file changes, you can update the API data with:
 
 ```python
-app.update_data()
+app.update_database()
 ```
 
 Note that this will only update the data, not the API endpoints or query parameters. 
