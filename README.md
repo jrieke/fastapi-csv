@@ -30,14 +30,15 @@ an API for it, run:
 fastapi-csv people.csv
 ```
 
-This will start a fastapi instance based on the CSV file. It has an endpoint `/people` 
-(same name as the file), which can be queried using the CSV's column names, e.g. you can 
-do:
+This will start a fastapi instance and auto-generate endpoints and query parameters 
+based on the CSV file. In this case, the API has an endpoint `/people` (same name as the 
+file), which can be queried using the CSV's column names, e.g. you can do:
 
 - `/people?first_name=Rachel`
 - `/people?last_name=Johnson&age=48`
    
-Additionally, there are some convenience query parameters, e.g. 
+Additionally, fastapi-csv creates some convenience query parameters for specific data 
+types, e.g. 
 
 - `/people&age_greaterThan=18` (for int/float)
 - `/people&age_lessThanEqual=18` (for int/float)
