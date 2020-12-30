@@ -24,7 +24,7 @@ Requires Python 3.6+
 ### 1. From the command line
 
 There's a simple CSV file in this repo for testing ([people.csv](people.csv)). To start 
-an API for it:
+an API for it, run:
 
 ```bash
 fastapi-csv people.csv
