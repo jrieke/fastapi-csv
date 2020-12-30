@@ -2,9 +2,12 @@
 
 ## What is this?
 
-Create APIs from CSV files within seconds, using a lightweight & fully customizable 
-wrapper around [fastapi](https://fastapi.tiangolo.com/). The CSV data is internally 
-stored in a temporary sqlite database, so it's blazing fast even for huge files. 
+A Python package to create APIs from CSV files within seconds, using a lightweight & 
+fully customizable wrapper around [fastapi](https://fastapi.tiangolo.com/). 
+
+Endpoints and query parameters are auto-generated based on the CSV file. 
+The data is written to a (temporary) sqlite database, so the API is blazing fast even 
+for huge files. 
 
 
 ## Installation
