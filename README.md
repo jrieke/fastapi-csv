@@ -1,13 +1,30 @@
-# fastapi-csv
 
-## What is this?
+<!-- <h1 align="center">fastapi-csv</h1>
+
+<p align="center"><strong>🚧 Create APIs from CSV files within seconds, using fastapi</strong></p> -->
+
+# fastapi-csv 
+
+**🚧 Create APIs from CSV files within seconds, using fastapi**
+
+This is a Python package to create APIs from CSV files, using a lightweight & 
+fully customizable wrapper around [fastapi](https://fastapi.tiangolo.com/). Endpoints 
+and query parameters are auto-generated based on the column names and data types in the 
+CSV file. Its data is written to a (temporary) sqlite database, so the API is blazing 
+fast even for huge files.
+
+![](images/visual-demo.png)
+
+
+<!-- ## What is this?
 
 A Python package to create APIs from CSV files within seconds, using a lightweight & 
 fully customizable wrapper around [fastapi](https://fastapi.tiangolo.com/). 
 
 Endpoints and query parameters are auto-generated based on the CSV file. 
 The data is written to a (temporary) sqlite database, so the API is blazing fast even 
-for huge files. 
+for huge files.  -->
+
 
 
 ## Installation
