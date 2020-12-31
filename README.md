@@ -24,16 +24,21 @@ Requires Python 3.6+
 
 ### 1. From the command line
 
-There's a simple CSV file in this repo for testing ([people.csv](people.csv)). To start 
-an API for it, run:
+There's a simple CSV file in this repo for testing ([people.csv](people.csv)). You can
+start an API for it by running one of:
 
 ```bash
+# from file
 fastapi-csv people.csv
+
+# directly from URL
+fastapi-csv https://raw.githubusercontent.com/jrieke/fastapi-csv/main/people.csv
 ```
 
-This will start a fastapi instance and auto-generate endpoints and query parameters 
-based on the CSV file. In this case, the API has an endpoint `/people` (same name as the 
-file), which can be queried using the CSV's column names, e.g. you can do:
+Either command should start a fastapi instance, which has auto-generated endpoints and 
+query parameters based on the CSV file. Here, the API has an endpoint `/people` 
+(same name as the file), which can be queried using the CSV's column names, e.g. you can 
+do:
 
 - `/people?first_name=Rachel`
 - `/people?last_name=Johnson&age=48`
