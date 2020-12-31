@@ -60,12 +60,17 @@ class FastAPI_CSV(FastAPI):
     #     return results
 
     def __init__(self, csv_path: Union[str, Path]) -> None:
-        """Initializes a FastAPI instance that serves data from a CSV file."""
+        """
+        Initializes a FastAPI instance that serves data from a CSV file.
+
+        Args:
+            csv_path (Union[str, Path]): The path to the CSV file, can also be a URL
+        """
         super().__init__()
 
         # Read CSV file to pandas dataframe and create sqlite3 database from it.
-        self.csv_path = Path(csv_path)
-        self.table_name = self.csv_path.stem
+        self.csv_path = csv_path
+        self.table_name = Path(self.csv_path).stem
         self.con = None
         df = self.update_database()
 
