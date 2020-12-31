@@ -24,8 +24,8 @@ Requires Python 3.6+
 
 ### 1. From the command line
 
-There's a simple CSV file in this repo for testing ([people.csv](people.csv)). You can
-start an API for it by running one of:
+There's a simple CSV file in this repo for testing ([people.csv](people.csv)). To start
+an API for it, run one of:
 
 ```bash
 # from file
