@@ -23,6 +23,8 @@ setup(
     url="https://github.com/jrieke/fastapi-csv",
     license="MIT",
     python_requires=">=3.6",
+    packages=find_packages(exclude=("tests", "docs", "examples")),
+    include_package_data=True,
     install_requires=["pandas", "uvicorn", "pydantic", "numpy", "fastapi", "typer",],
     entry_points={"console_scripts": ["fastapi-csv=fastapi_csv.cli:typer_app"],},
     classifiers=[
