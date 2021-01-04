@@ -1,6 +1,6 @@
-# fastapi-csv 
+# fastapi-csv 🚧
 
-**🚧 Create APIs from CSV files within seconds, using fastapi**
+**Create APIs from CSV files within seconds, using fastapi.**
 
 This is a Python package to create APIs from CSV files, using a lightweight & 
 fully customizable wrapper around [fastapi](https://fastapi.tiangolo.com/). Endpoints 
