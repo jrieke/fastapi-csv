@@ -1,4 +1,4 @@
-# fastapi-csv 🚧
+# fastapi-csv &nbsp;🚧
 
 **Create APIs from CSV files within seconds, using fastapi.**
 
