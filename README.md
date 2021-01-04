@@ -17,8 +17,6 @@ fast even for huge files.
 pip install git+https://github.com/jrieke/fastapi-csv.git
 ```
 
-Requires Python 3.6+
-
 
 ## How to use it
 
