@@ -1,5 +1,7 @@
 # fastapi-csv &nbsp;🏗️
 
+[![PyPi](https://img.shields.io/pypi/v/fastapi-csv)](https://pypi.org/project/fastapi-csv/)
+
 **Create APIs from CSV files within seconds, using fastapi.**
 
 This is a Python package to create APIs from CSV files, using a lightweight & 
@@ -14,7 +16,7 @@ fast even for huge files.
 ## Installation
 
 ```bash
-pip install git+https://github.com/jrieke/fastapi-csv.git
+pip install fastapi-csv
 ```
 
 
