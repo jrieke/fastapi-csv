@@ -59,7 +59,7 @@ class FastAPI_CSV(FastAPI):
     #     # Return modified results so they get passed to the user.
     #     return results
 
-    def __init__(self, csv_path: Union[str, Path]) -> None:
+    def __init__(self, csv_path: Union[str, Path], delimiter: Union[str, str]) -> None:
         """
         Initializes a FastAPI instance that serves data from a CSV file.
 
@@ -70,6 +70,7 @@ class FastAPI_CSV(FastAPI):
 
         # Read CSV file to pandas dataframe and create sqlite3 database from it.
         self.csv_path = csv_path
+        self.delimiter = delimiter
         self.table_name = Path(self.csv_path).stem
         self.con = None
         df = self.update_database()
@@ -134,8 +135,8 @@ class FastAPI_CSV(FastAPI):
 
     def delete_database(self):
         """
-        Deletes the database with all data read from the CSV. 
-            
+        Deletes the database with all data read from the CSV.
+
         The CSV file is not deleted of course. The API endpoints are also not affected,
         so you can use `update_data` to read in new data.
         """
@@ -149,9 +150,9 @@ class FastAPI_CSV(FastAPI):
     def update_database(self):
         """
         Updates the database with the current data from the CSV file.
-        
+
         Note that this only affects the database, not the endpoints. If the column names
-        and/or data types in the CSV change (and you want that to update in the 
+        and/or data types in the CSV change (and you want that to update in the
         endpoints as well), you need to create a new FastAPI_CSV object.
         """
         self.delete_database()
@@ -164,7 +165,7 @@ class FastAPI_CSV(FastAPI):
 
         # Download excel file from Google Sheets, read it with pandas and write to
         # database.
-        df = pd.read_csv(self.csv_path)
+        df = pd.read_csv(self.csv_path, delimiter=self.delimiter)
         self.con = sqlite3.connect(":memory:", check_same_thread=False)
         df.to_sql(self.table_name, self.con)
 
