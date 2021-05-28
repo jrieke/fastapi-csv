@@ -4,10 +4,10 @@
 
 **Create APIs from CSV files within seconds, using fastapi.**
 
-This is a Python package to create APIs from CSV files, using a lightweight & 
-fully customizable wrapper around [fastapi](https://fastapi.tiangolo.com/). Endpoints 
-and query parameters are auto-generated based on the column names and data types in the 
-CSV file. Its data is written to a (temporary) sqlite database, so the API is blazing 
+This is a Python package to create APIs from CSV files, using a lightweight &
+fully customizable wrapper around [fastapi](https://fastapi.tiangolo.com/). Endpoints
+and query parameters are auto-generated based on the column names and data types in the
+CSV file. Its data is written to a (temporary) sqlite database, so the API is blazing
 fast even for huge files.
 
 ![](images/visual-demo.png)
@@ -33,18 +33,22 @@ fastapi-csv people.csv
 
 # directly from URL
 fastapi-csv https://raw.githubusercontent.com/jrieke/fastapi-csv/main/people.csv
+
+# With options : specify the delimiter character in the CSV, the host and port for the server
+fastapi-csv people.csv --delimiter "|" --host "127.0.0.1" --port 1234
+
 ```
 
-Either command should start a fastapi instance, which has auto-generated endpoints and 
-query parameters based on the CSV file. Here, the API has an endpoint `/people` 
-(same name as the file), which can be queried using the CSV's column names, e.g. you can 
+Either command should start a fastapi instance, which has auto-generated endpoints and
+query parameters based on the CSV file. Here, the API has an endpoint `/people`
+(same name as the file), which can be queried using the CSV's column names, e.g. you can
 do:
 
 - `/people?first_name=Rachel`
 - `/people?last_name=Johnson&age=48`
-   
-Additionally, fastapi-csv creates some convenience query parameters for specific data 
-types, e.g. 
+
+Additionally, fastapi-csv creates some convenience query parameters for specific data
+types, e.g.
 
 - `/people&age_greaterThan=18` (for int/float)
 - `/people&age_lessThanEqual=18` (for int/float)
@@ -72,7 +76,7 @@ uvicorn my_file:app
 
 **Extending the API**
 
-The cool thing: `FastAPI_CSV` is just a wrapper around `FastAPI`. Therefore, you can do 
+The cool thing: `FastAPI_CSV` is just a wrapper around `FastAPI`. Therefore, you can do
 all the stuff you can do with a normal fastapi instance, e.g. add a new endpoint:
 
 ```python
@@ -82,7 +86,7 @@ def hello(self):
     return {"Hello:", "World"}
 ```
 
-In the future, you will also be able to easily modify existing endpoints that were 
+In the future, you will also be able to easily modify existing endpoints that were
 generated from the CSV file.
 
 
@@ -94,5 +98,5 @@ If your CSV file changes, you can update the API data with:
 app.update_database()
 ```
 
-Note that this will only update the data, not the API endpoints or query parameters. 
+Note that this will only update the data, not the API endpoints or query parameters.
 To do that, you need to create a new `FastAPI_CSV` instance or re-start uvicorn.
